@@ -32,7 +32,7 @@ import com.example.compose.models.Conversion
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConversionMenu(conversionList:List<Conversion>,modifier: Modifier){
+fun ConversionMenu(conversionList:List<Conversion>,modifier: Modifier,convert:(Conversion)->Unit){
     var displayText by remember { mutableStateOf("Select the Conversion type") }
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
     var expanded by remember { mutableStateOf(false) }
@@ -71,6 +71,7 @@ fun ConversionMenu(conversionList:List<Conversion>,modifier: Modifier){
             , fontWeight = FontWeight.Normal)}, onClick = {
                 displayText = conversion.description
                 expanded =false
+                convert(conversion)
             })
         }
     }
