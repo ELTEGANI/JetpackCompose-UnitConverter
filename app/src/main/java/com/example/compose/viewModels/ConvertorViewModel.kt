@@ -1,9 +1,15 @@
 package com.example.compose.viewModels
 
 import androidx.lifecycle.ViewModel
-import com.example.compose.models.Conversion
+import androidx.lifecycle.viewModelScope
+import com.example.compose.data.Conversion
+import com.example.compose.data.ConversionResult
+import com.example.compose.data.ConvertedRepositoryIml
+import com.example.compose.data.ConvertorRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ConvertorViewModel : ViewModel() {
+class ConvertorViewModel(private val convertorRepository: ConvertorRepository) : ViewModel() {
     fun getConversions() = listOf(
         Conversion(1,"Pounds to Kilograms","lbs","kg",0.453592),
         Conversion(2,"Kilograms to Pounds","kg","lbs",2.20462),
@@ -12,4 +18,10 @@ class ConvertorViewModel : ViewModel() {
         Conversion(5,"Miles to Kilometers","mi","km",1.60934),
         Conversion(6,"Kilometers to Miles","km","mi",0.621371)
     )
+
+    fun addResult(message1:String,message2:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            convertorRepository.insertResult(ConversionResult(id = 0,message1,message2))
+        }
+    }
 }

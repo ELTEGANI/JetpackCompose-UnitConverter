@@ -1,4 +1,4 @@
-package com.example.compose.models
+package com.example.compose.data
 
 data class Conversion(
     val id : Int,
