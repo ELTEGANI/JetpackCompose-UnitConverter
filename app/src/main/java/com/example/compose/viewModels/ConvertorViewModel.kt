@@ -6,10 +6,13 @@ import com.example.compose.data.Conversion
 import com.example.compose.data.ConversionResult
 import com.example.compose.data.ConvertedRepositoryIml
 import com.example.compose.data.ConvertorRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ConvertorViewModel(private val convertorRepository: ConvertorRepository) : ViewModel() {
+@HiltViewModel
+class ConvertorViewModel @Inject constructor(private val convertorRepository: ConvertorRepository) : ViewModel() {
     fun getConversions() = listOf(
         Conversion(1,"Pounds to Kilograms","lbs","kg",0.453592),
         Conversion(2,"Kilograms to Pounds","kg","lbs",2.20462),

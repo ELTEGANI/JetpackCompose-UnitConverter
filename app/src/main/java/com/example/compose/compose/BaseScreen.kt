@@ -8,18 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.compose.compose.history.HistoryScreen
 import com.example.compose.compose.convertor.TopScreen
-import com.example.compose.viewModels.ConvertedViewModelFactory
 import com.example.compose.viewModels.ConvertorViewModel
-
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun BaseScreen(
-    convertedViewModelFactory: ConvertedViewModelFactory,
     modifier: Modifier = Modifier,
-    convertorViewModel: ConvertorViewModel = viewModel(factory = convertedViewModelFactory)
+    convertorViewModel: ConvertorViewModel = hiltViewModel()
 ){
    val listConverted = convertorViewModel.getConversions()
    val historyList = convertorViewModel.resultList.collectAsState(initial = emptyList())

@@ -8,16 +8,17 @@ import com.example.compose.data.ConverterDatabase
 import com.example.compose.compose.BaseScreen
 import com.example.compose.ui.theme.ComposeTheme
 import com.example.compose.viewModels.ConvertedViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val dao = ConverterDatabase.getInstance(application).converterDAO
-        val repository = ConvertedRepositoryIml(dao)
-        val factory = ConvertedViewModelFactory(repository)
         setContent {
             ComposeTheme {
-                BaseScreen(convertedViewModelFactory = factory)
+                BaseScreen()
             }
         }
     }
